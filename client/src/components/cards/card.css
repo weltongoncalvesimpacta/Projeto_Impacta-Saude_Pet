@@ -1,0 +1,53 @@
+.card--container {
+    width: 250px;
+    border: 3px solid #000000;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .card-id {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    margin-top: 5px;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    padding: 3px;
+    font-family: monospace;
+    font-size: 10px;
+  }
+
+  
+  .card--title {
+    display: inline;
+    font-size: 10px;
+    padding-bottom: 0px;
+  }
+  
+  .card--raca {
+    margin-top: 5px;
+    font-size: 10px;
+    text-align: left;
+  }
+
+  .card--idade {
+    margin-top: 5px;
+    font-size: 10px;
+    text-align: left;
+  }
+
+  .card--sexo {
+    margin-top: 5px;
+    font-size: 10px;
+    text-align: left;
+  }
+  
+  .card--container:hover {
+    background-color: aqua;
+  }
