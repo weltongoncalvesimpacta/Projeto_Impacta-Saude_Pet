@@ -20,7 +20,7 @@ const handleClickCard = () => {
             sexo={props.sexo}
             ListCard={props.ListCard}
             setListCard={props.setListCard}
-            id={props.id}
+            id={props.idpet}
         />
         <div className="card--container" onClick={() =>
         handleClickCard()}>

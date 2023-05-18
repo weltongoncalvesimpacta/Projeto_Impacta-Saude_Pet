@@ -9,7 +9,7 @@ import Axios from "axios";
 
 export default function FormDialog(props) {
   const [editValues, setEditValues] = useState({
-    id: props.id,
+    idpet: props.idpet,
     nome: props.nome,
     raca: props.raca,
     idade: props.idade,
@@ -22,7 +22,7 @@ export default function FormDialog(props) {
 
   const handleEditPet = () => {
     Axios.put("http://localhost:3001/edit", {
-        id: editValues.id,
+        idpet: editValues.idpet,
         nome: editValues.nome,
         raca: editValues.raca,
         idade: editValues.idade,
@@ -32,16 +32,16 @@ export default function FormDialog(props) {
   };
 
   const handleDeletePet = () => {
-    Axios.delete(`http://localhost:3001/delete/${editValues.id}`);
+    Axios.delete(`http://localhost:3001/delete/${editValues.idpet}`);
     handleClose();
   };
 
-  const handleChangeValues = (value) => {
+  function handleChangeValues(value) {
     setEditValues(prevValues => ({
       ...prevValues,
       [value.target.id]: value.target.value,
     }));
-  };
+  }
 
 
   return (
@@ -56,9 +56,9 @@ export default function FormDialog(props) {
           <TextField
             disabled
             margin="dense"
-            id="id"
+            id="idpet"
             label="id"
-            defaultValue={props.id}
+            defaultValue={props.idpet}
             onChange={handleChangeValues}
             type="text"
             fullWidth

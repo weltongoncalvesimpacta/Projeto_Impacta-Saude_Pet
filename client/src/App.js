@@ -1,17 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 import Axios from "axios";
-import Card from './components/cards/card';
+import Card from "./components/cards/card";
 
 function App() {
-  const [values, setValues] = useState();
+  const [values, setValues] = useState({});
   const [listPets, setListPets] = useState([]);
-  console.log(listPets);
-  const handleaddValues = (value) => {
-    setValues((prevValues) => ({
-      ...prevValues,
-      [value.target.name]: value.target.value,
-    }));
+  
+  const handleAddValues = (event) => {
+  const { name, value } = event.target;
+  setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
   const handleClickButton = () => {
@@ -20,9 +18,7 @@ function App() {
       raca: values.raca,
       idade: values.idade,
       sexo: values.sexo,
-    }).then(() => {
-      
-    });
+    }).then(() => {});
   };
 
   useEffect(() => {
@@ -31,75 +27,108 @@ function App() {
     });
   }, []);
 
-
   return (
-  <><header>
-    <p>SAUDE PET</p>
-    </header>
-    <nav>
-      <ul class="menu">
-        <li><a href="#">Cadastrar Pet</a></li>
-        <li><a href="#">Selecionar Pet</a></li>
-        <li><a href="#">Cadastrar na agenda</a>
-          <ul>
-            <li><a href="#">Vermifugo</a></li>
-            <li><a href="#">Vacinas</a></li>
-            <li><a href="#">Consulta</a></li>
-            <li><a href="#">Medicamentos</a></li>
-            <li><a href="#">Antipulga</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Links</a></li>
-        <li><a href="#">Anotações</a></li>
-      </ul>
-    </nav><body>
+    <>
+      <header>
+        <h1>Saúde Pet</h1>
+      </header>
+      <nav>
+        <ul className="menu">
+          <li>
+            <a href="#">Cadastrar Pet</a>
+          </li>
+          <li>
+            <a href="#">Selecionar Pet</a>
+          </li>
+          <li>
+            <a href="#">Cadastrar na agenda</a>
+            <ul>
+              <li>
+                <a href="#">Vermifugo</a>
+              </li>
+              <li>
+                <a href="#">Vacinas</a>
+              </li>
+              <li>
+                <a href="#">Consulta</a>
+              </li>
+              <li>
+                <a href="#">Medicamentos</a>
+              </li>
+              <li>
+                <a href="#">Antipulga</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Links</a>
+          </li>
+          <li>
+            <a href="#">Anotações</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
         <div className="register-container">
-          <p className="register-name">Cadastrar Pet</p>
-          <input
-            type="text"
-            name="name"
-            placeholder="Nome"
-            className="register-input"
-            onChange={handleaddValues} />
-          <input
-            type="text"
-            placeholder="Raça"
-            name="raca"
-            className="register-input"
-            onChange={handleaddValues} />
-          <input
-            type="text"
-            placeholder="Idade"
-            name="idade"
-            className="register-input"
-            onChange={handleaddValues} />
-
-          <input
-            type="text"
-            placeholder="Sexo"
-            name="sexo"
-            className="register-input"
-            onChange={handleaddValues} />
-
-          <button className="register-button"
-            onClick={() => handleClickButton()}>Cadastrar</button>
+          <h2>Cadastrar Pet</h2>
+          <form>
+            <label>
+              Nome:
+              <input
+                type="text"
+                name="name"
+                placeholder="Nome do Pet"
+                onChange={handleAddValues}
+              />
+            </label>
+            <label>
+              Raça:
+              <input
+                type="text"
+                name="raca"
+                placeholder="Raça do Pet"
+                onChange={handleAddValues}
+              />
+            </label>
+            <label>
+              Idade:
+              <input
+                type="text"
+                name="idade"
+                placeholder="Idade do Pet"
+                onChange={handleAddValues}
+              />
+            </label>
+            <label>
+              Sexo:
+              <input
+                type="text"
+                name="sexo"
+                placeholder="Sexo do Pet"
+                onChange={handleAddValues}
+              />
+            </label>
+            <button className="register-button" onClick={handleClickButton}>
+              Cadastrar
+            </button>
+          </form>
         </div>
-
-        {typeof listPets !== "undefined" &&
-          listPets.map((value) => {
-            return <Card
-              key={value.id}
-              Listcard={listPets}
+  
+          {listPets.map((pet) => (
+            <Card
+              key={pet.idpet}
+              pet={pet}
+              listPets={listPets}
               setListPets={setListPets}
-              id={value.id}
-              nome={value.nome}
-              raca={value.raca}
-              idade={value.idade}
-              sexo={value.sexo}
-            ></Card>;
-          })};
-      </body></>
-);
-}
-
-export default App;
+              id={pet.idpet}
+              nome={pet.nome}
+              raca={pet.raca}
+              idade={pet.idade}
+              sexo={pet.sexo}
+            />
+          ))}
+        </main>
+      </>
+    );
+  };
+ export default App;
