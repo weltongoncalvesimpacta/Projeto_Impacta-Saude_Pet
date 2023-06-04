@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Axios from "axios";
 import Card from "./components/cards/card";
+import Formulario from "./components/formularios/formVacina";
+import FormVermifugo from "./components/formularios/formVermifugo";
+import FormConsulta from "./components/formularios/formConsulta";
+import FormMedicamentos from "./components/formularios/formMedicamento";
+import FormAntipulgas from "./components/formularios/formAntipulagas";
 
 function App() {
   const [values, setValues] = useState({});
   const [listPets, setListPets] = useState([]);
+
   
   const handleAddValues = (event) => {
   const { name, value } = event.target;
@@ -113,7 +119,12 @@ function App() {
             </button>
           </form>
         </div>
-  
+        <Formulario/>
+        <FormVermifugo/>
+        <FormConsulta/>
+        <FormMedicamentos/>
+        <FormAntipulgas/>
+
           {listPets.map((pet) => (
             <Card
               key={pet.idpet}

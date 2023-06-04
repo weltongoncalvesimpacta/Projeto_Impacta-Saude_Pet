@@ -38,14 +38,14 @@ app.get("/getCards", (req, res) => {
     });
 });
 
-app.put("/edit", (req, res) => {
+app.patch("/edit", (req, res) => {
     const {idpet} = req.body;
     const {nome} = req.body;
     const {raca} = req.body;
     const {idade} = req.body;
     const {sexo} = req.body;
 
-    let mysql = "UPDATE pet SET nome = ?, raca = ?, idade = ?, sexo = ? WHERE nome = ?";
+    let mysql = "UPDATE pet SET nome = ?, raca = ?, idade = ?, sexo = ? WHERE idpet = ?";
 
     db.query(mysql, [nome, raca, idade, sexo, idpet], (err, result) => {
         if (err) console.log(err);
